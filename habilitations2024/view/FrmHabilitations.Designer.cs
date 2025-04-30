@@ -53,6 +53,8 @@
             this.btnDemandeModifDev = new System.Windows.Forms.Button();
             this.grbLesDeveloppeurs = new System.Windows.Forms.GroupBox();
             this.dgvDeveloppeurs = new System.Windows.Forms.DataGridView();
+            this.cboFiltre = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.grbPwd.SuspendLayout();
             this.grbDeveloppeur.SuspendLayout();
             this.grbLesDeveloppeurs.SuspendLayout();
@@ -114,9 +116,9 @@
             this.grbPwd.Controls.Add(this.txtPwd2);
             this.grbPwd.Controls.Add(this.txtPwd1);
             this.grbPwd.Controls.Add(this.label6);
-            this.grbPwd.Location = new System.Drawing.Point(11, 415);
+            this.grbPwd.Location = new System.Drawing.Point(11, 444);
             this.grbPwd.Name = "grbPwd";
-            this.grbPwd.Size = new System.Drawing.Size(605, 77);
+            this.grbPwd.Size = new System.Drawing.Size(605, 81);
             this.grbPwd.TabIndex = 6;
             this.grbPwd.TabStop = false;
             this.grbPwd.Text = "changer le mot de passe";
@@ -237,6 +239,8 @@
             // 
             // grbDeveloppeur
             // 
+            this.grbDeveloppeur.Controls.Add(this.label8);
+            this.grbDeveloppeur.Controls.Add(this.cboFiltre);
             this.grbDeveloppeur.Controls.Add(this.btnAnnulDev);
             this.grbDeveloppeur.Controls.Add(this.btnEnregDev);
             this.grbDeveloppeur.Controls.Add(this.cboProfil);
@@ -251,7 +255,7 @@
             this.grbDeveloppeur.Controls.Add(this.txtNom);
             this.grbDeveloppeur.Location = new System.Drawing.Point(11, 280);
             this.grbDeveloppeur.Name = "grbDeveloppeur";
-            this.grbDeveloppeur.Size = new System.Drawing.Size(605, 129);
+            this.grbDeveloppeur.Size = new System.Drawing.Size(605, 158);
             this.grbDeveloppeur.TabIndex = 5;
             this.grbDeveloppeur.TabStop = false;
             this.grbDeveloppeur.Text = "ajouter un développeur";
@@ -315,11 +319,29 @@
             this.dgvDeveloppeurs.Size = new System.Drawing.Size(581, 206);
             this.dgvDeveloppeurs.TabIndex = 0;
             // 
+            // cboFiltre
+            // 
+            this.cboFiltre.FormattingEnabled = true;
+            this.cboFiltre.Location = new System.Drawing.Point(354, 120);
+            this.cboFiltre.Name = "cboFiltre";
+            this.cboFiltre.Size = new System.Drawing.Size(121, 21);
+            this.cboFiltre.TabIndex = 11;
+            this.cboFiltre.SelectedIndexChanged += new System.EventHandler(this.cboFiltre_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(253, 123);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(84, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Filtrer les profils :";
+            // 
             // FrmHabilitations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(627, 502);
+            this.ClientSize = new System.Drawing.Size(627, 537);
             this.Controls.Add(this.grbPwd);
             this.Controls.Add(this.grbDeveloppeur);
             this.Controls.Add(this.grbLesDeveloppeurs);
@@ -362,6 +384,8 @@
         private System.Windows.Forms.Button btnDemandeModifDev;
         private System.Windows.Forms.GroupBox grbLesDeveloppeurs;
         private System.Windows.Forms.DataGridView dgvDeveloppeurs;
+        private System.Windows.Forms.ComboBox cboFiltre;
+        private System.Windows.Forms.Label label8;
     }
 }
 

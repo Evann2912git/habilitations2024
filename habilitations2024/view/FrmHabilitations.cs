@@ -56,14 +56,19 @@ namespace habilitations2024.view
             EnCoursModifPwd(false);
         }
 
+        private void MiseAJourListeDeveloppeur(Object profilChoisi)
+        {
+            List<Developpeur> lesDeveloppeurs = controller.GetLesDeveloppeurs(profilChoisi);
+            bdgDeveloppeurs.DataSource = lesDeveloppeurs;
+            dgvDeveloppeurs.DataSource = bdgDeveloppeurs;
+        }
+
         /// <summary>
         /// Affiche les développeurs
         /// </summary>
         private void RemplirListeDeveloppeurs()
         {
-            List<Developpeur> lesDeveloppeurs = controller.GetLesDeveloppeurs();
-            bdgDeveloppeurs.DataSource = lesDeveloppeurs;
-            dgvDeveloppeurs.DataSource = bdgDeveloppeurs;
+            MiseAJourListeDeveloppeur("");
             dgvDeveloppeurs.Columns["iddeveloppeur"].Visible = false;
             dgvDeveloppeurs.Columns["pwd"].Visible = false;
             dgvDeveloppeurs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -77,6 +82,11 @@ namespace habilitations2024.view
             List<Profil> lesProfils = controller.GetLesProfils();
             bdgProfils.DataSource = lesProfils;
             cboProfil.DataSource = bdgProfils;
+            cboFiltre.Items.Add("");
+            foreach(Profil profil in lesProfils)
+            {
+                cboFiltre.Items.Add(profil);
+            }
         }
 
         /// <summary>
@@ -115,7 +125,7 @@ namespace habilitations2024.view
                 if (MessageBox.Show("Voulez-vous vraiment supprimer " + developpeur.Nom + " " + developpeur.Prenom + " ?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     controller.DelDeveloppeur(developpeur);
-                    RemplirListeDeveloppeurs();
+                    MiseAJourListeDeveloppeur(cboFiltre.SelectedItem);
                 }
             }
             else
@@ -166,7 +176,7 @@ namespace habilitations2024.view
                     Developpeur developpeur = new Developpeur(0, txtNom.Text, txtPrenom.Text, txtTel.Text, txtMail.Text, profil);
                     controller.AddDeveloppeur(developpeur);
                 }
-                RemplirListeDeveloppeurs();
+                MiseAJourListeDeveloppeur(cboFiltre.SelectedItem);
                 EnCourseModifDeveloppeur(false);
             }
             else
@@ -254,5 +264,9 @@ namespace habilitations2024.view
             txtPwd2.Text = "";
         }
 
+        private void cboFiltre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MiseAJourListeDeveloppeur(cboFiltre.SelectedItem);
+        }
     }
 }

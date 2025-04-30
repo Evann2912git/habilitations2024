@@ -63,7 +63,7 @@ namespace habilitations2024.dal
         /// Récupère et retourne les développeurs
         /// </summary>
         /// <returns>liste des développeurs</returns>
-        public List<Developpeur> GetLesDeveloppeurs()
+        public List<Developpeur> GetLesDeveloppeurs(Object profilChoisi)
         {
             List<Developpeur> lesDeveloppeurs = new List<Developpeur>();
             if (access.Manager != null)
@@ -79,9 +79,12 @@ namespace habilitations2024.dal
                         foreach (Object[] record in records)
                         {
                             Profil profil = new Profil((int)record[5], (string)record[6]);
-                            Developpeur developpeur = new Developpeur((int)record[0], (string)record[1], (string)record[2],
+                            if(profilChoisi.Equals("")|| profil.ToString().Equals(profilChoisi.ToString()))
+                            {
+                                Developpeur developpeur = new Developpeur((int)record[0], (string)record[1], (string)record[2],
                                 (string)record[3], (string)record[4], profil);
-                            lesDeveloppeurs.Add(developpeur);
+                                lesDeveloppeurs.Add(developpeur);
+                            }
                         }
                     }
                 }
